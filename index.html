@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Time tracking dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(348, 100%, 68%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile">
+        <div class="top-half">
+          <div class="image-div">
+            <img
+              class="profile-pic"
+              src="./images/image-jeremy.png"
+              alt="profile pic"
+            />
+          </div>
+          <p>Report for</p>
+          <h1>
+            Jeremy<br />
+            Robson
+          </h1>
+        </div>
+        <div class="bottom-half">
+          <ul>
+            <li class="links" id="daily-link">Daily</li>
+            <li class="links" id="weekly-link">Weekly</li>
+            <li class="links" id="monthly-link">Monthly</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="work">
+        <div class="background-img1"></div>
+        <div class="tracking-info">
+          <div class="header-section">
+            <p>Work</p>
+            <img class="dots" src="./images/icon-ellipsis.svg" alt="menu" />
+          </div>
+          <div class="time-section">
+            <p class="hours">32hrs</p>
+            <p class="last-week">Last Week - 36hrs</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="play">
+        <div class="background-img2"></div>
+        <div class="tracking-info">
+          <div class="header-section">
+            <p>Play</p>
+            <img class="dots" src="./images/icon-ellipsis.svg" alt="menu" />
+          </div>
+          <div class="time-section">
+            <p class="hours">10hrs</p>
+            <p class="last-week">Last Week - 8hrs</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="study">
+        <div class="background-img3"></div>
+        <div class="tracking-info">
+          <div class="header-section">
+            <p>Study</p>
+            <img class="dots" src="./images/icon-ellipsis.svg" alt="menu" />
+          </div>
+          <div class="time-section">
+            <p class="hours">4hrs</p>
+            <p class="last-week">Last Week - 7hrs</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="background-img4"></div>
+        <div class="tracking-info">
+          <div class="header-section">
+            <p>Exercise</p>
+            <img class="dots" src="./images/icon-ellipsis.svg" alt="menu" />
+          </div>
+          <div class="time-section">
+            <p class="hours">4hrs</p>
+            <p class="last-week">Last Week - 5hrs</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social">
+        <div class="background-img5"></div>
+        <div class="tracking-info">
+          <div class="header-section">
+            <p>Social</p>
+            <img class="dots" src="./images/icon-ellipsis.svg" alt="menu" />
+          </div>
+          <div class="time-section">
+            <p class="hours">5hrs</p>
+            <p class="last-week">Last Week - 10hrs</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="self-care">
+        <div class="background-img6"></div>
+        <div class="tracking-info">
+          <div class="header-section">
+            <p>Self-Care</p>
+            <img class="dots" src="./images/icon-ellipsis.svg" alt="menu" />
+          </div>
+          <div class="time-section">
+            <p class="hours">2hrs</p>
+            <p class="last-week">Last Week - 2hrs</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">TayWhitty</a>.
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
