@@ -7,102 +7,73 @@ const hourlyLink = document.getElementById("monthly-link");
 
 weeklyLink.style.color = "white";
 
-dailyLink.addEventListener("click", updateDaily);
+dailyLink.addEventListener("click", () => updateInfo('daily'));
 
-weeklyLink.addEventListener("click", updateWeekly);
+weeklyLink.addEventListener("click", () => updateInfo('weekly'));
 
-hourlyLink.addEventListener("click", updateMonthly);
+hourlyLink.addEventListener("click", () => updateInfo('monthly'));
 
-function updateDaily() {
-  dailyLink.style.color = "white";
-  hourlyLink.style.color = "";
-  weeklyLink.style.color = "";
-  console.log("clicked");
-  fetch("data.json")
-    .then((res) => res.json())
-    .then((data) => {
-      dailyLoop(data, hours);
-    });
-}
-
-function updateWeekly() {
-  weeklyLink.style.color = "white";
-  dailyLink.style.color = "";
-  hourlyLink.style.color = "";
-  console.log("clicked");
-  fetch("data.json")
-    .then((res) => res.json())
-    .then((data) => {
-      loopTrial(data, hours);
-    });
-}
-
-function updateMonthly() {
-  hourlyLink.style.color = "white";
-  weeklyLink.style.color = "";
-  dailyLink.style.color = "";
-  console.log("clicked");
-  fetch('data.json')
-    .then((res) => res.json())
-    .then((data) => {
-      monthlyLoop(data, hours)
-    })
+async function getData() {
+  let url = 'data.json'
+  try {
+    let res = await fetch(url)
+    return await res.json()
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 
-let count = 0;
-let prevCount = 0;
+async function updateInfo(timeframe) {
+  if (timeframe == 'daily') {
+    dailyLink.style.color = "white";
+    hourlyLink.style.color = "";
+    weeklyLink.style.color = "";
+    let data = await getData()
+    mainLoop(data, 0, 0, 'daily')
+  } else if (timeframe == 'weekly') {
+    weeklyLink.style.color = "white";
+    dailyLink.style.color = "";
+    hourlyLink.style.color = "";
+    let data = await getData()
+    mainLoop(data, 0, 0, 'weekly')
+  } else if (timeframe == 'monthly') {
+    hourlyLink.style.color = "white";
+    weeklyLink.style.color = "";
+    dailyLink.style.color = "";
+    let data = await getData()
+    mainLoop(data, 0, 0, 'monthly')
+  }
+}
 
-function loopTrial(data, hours) {
+
+function mainLoop(data, currentCount, prevCount, timeframe) {
   for (let hour of hours) {
-    count++;
-    let currentData = data[count - 1].timeframes.weekly.current;
-    hour.textContent = `${currentData}hrs`;
+    currentCount++;
+    if (timeframe == 'daily') {
+      let currentData = data[currentCount - 1].timeframes.daily.current
+      hour.textContent = `${currentData}hrs`
+    } else if (timeframe == 'weekly') {
+      let currentData = data[currentCount - 1].timeframes.weekly.current;
+      hour.textContent = `${currentData}hrs`;
+    } else if (timeframe == 'monthly') {
+      let currentData = data[currentCount - 1].timeframes.monthly.current;
+      hour.textContent = `${currentData}hrs`;
+    }
   }
   for (let last of lastWeek) {
     prevCount++;
-    let prevData = data[prevCount - 1].timeframes.weekly.previous;
-    last.textContent = `Last Week - ${prevData}hrs`;
+    if (timeframe == 'daily') {
+      let prevData = data[prevCount - 1].timeframes.daily.previous;
+      last.textContent = `Last Month - ${prevData}hrs`;
+    } else if (timeframe == 'weekly') {
+      let prevData = data[prevCount - 1].timeframes.weekly.previous;
+      last.textContent = `Last Month - ${prevData}hrs`;
+    } else if (timeframe == 'monthly') {
+      let prevData = data[prevCount - 1].timeframes.monthly.previous;
+      last.textContent = `Last Month - ${prevData}hrs`;
+    }
   }
-  count = 0
-  prevCount = 0
-}
-
-let dailyCount = 0;
-let dailyPrev = 0;
-
-function dailyLoop(data, hours) {
-  for (let hour of hours) {
-    dailyCount++;
-    let currentData = data[dailyCount - 1].timeframes.daily.current;
-    hour.textContent = `${currentData}hrs`;
-    console.log(currentData);
-  }
-  for (let last of lastWeek) {
-    dailyPrev++;
-    let prevData = data[dailyPrev - 1].timeframes.daily.previous;
-    last.textContent = `Yesterday - ${prevData}hrs`;
-  }
-  dailyCount = 0
-  dailyPrev = 0
-}
-
-
-let monthlyCount = 0;
-let monthlyPrev = 0;
-
-function monthlyLoop(data, hours) {
-  for (let hour of hours) {
-    monthlyCount++;
-    let currentData = data[monthlyCount - 1].timeframes.monthly.current;
-    hour.textContent = `${currentData}hrs`;
-    console.log(currentData);
-  }
-  for (let last of lastWeek) {
-    monthlyPrev++;
-    let prevData = data[monthlyPrev - 1].timeframes.monthly.previous;
-    last.textContent = `Last Month - ${prevData}hrs`;
-  }
-  monthlyCount = 0
-  monthlyPrev = 0
+  currentCount = 0;
+  prevCount = 0;
 }
