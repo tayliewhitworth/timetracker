@@ -68,12 +68,13 @@ body {
 }
 
 .todo-container {
-  display: grid;
-  place-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: .5rem;
 }
 
 .todo {
-  min-width: 800px;
+  /* max-width: 800px; */
   background-color: var(--dark-blue);
   border-radius: 8px;
   padding: 2em;
@@ -274,4 +275,11 @@ input:checked ~ .bubble::after {
 .todo-item.done .todo-content input {
   text-decoration: line-through;
   color: var(--grey);
+}
+
+
+@media (max-width: 680px) {
+  .todo-item .actions button {
+    padding: .15rem;
+  }
 }

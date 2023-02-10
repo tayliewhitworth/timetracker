@@ -24,6 +24,7 @@ async function getData() {
 }
 
 
+
 async function updateInfo(timeframe) {
   if (timeframe == 'daily') {
     dailyLink.style.color = "white";

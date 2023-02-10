@@ -39,7 +39,7 @@ body {
   color: white;
   background-color: var(--blue);
   border-radius: 8px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .create-btn:hover {
@@ -150,6 +150,19 @@ body {
   position: relative;
   top: -5%;
   padding: 20px;
+  transition: all 0.5s ease;
+}
+
+.header-section,
+.time-section {
+  animation: info 0.5s linear;
+}
+
+@keyframes info {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+  }
 }
 
 .header-section {
@@ -257,4 +270,38 @@ body {
   width: 100%;
   height: 50px;
   border-radius: 8px;
+}
+
+@media (max-width: 680px) {
+  .container {
+    display: block;
+    padding-top: 1rem;
+  }
+
+  .container > *:not(.profile) {
+    padding-block: 2rem;
+  }
+
+  .profile-pic {
+    margin-bottom: 20px;
+  }
+
+  .top-half {
+    height: 200px;
+    padding: 10px;
+  }
+
+  .bottom-half {
+    height: 110px;
+    top: -10px;
+  }
+
+  .work,
+  .play,
+  .exercise,
+  .study,
+  .social,
+  .self-care {
+    margin: auto;
+  }
 }
